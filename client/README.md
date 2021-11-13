@@ -1,70 +1,128 @@
-# Getting Started with Create React App
+# MedEnRoll
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Who is the User?
+ 
 
-In the project directory, you can run:
+The user is the patient and the doctor’s office.
 
-### `npm start`
+ 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## How is it going to benefit the user?
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Will help overcome the inefficiencies related to paperwork and time-management while making the doctor’s appointments. 
 
-### `npm run build`
+ 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## What data do we need to capture?
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+Basic login information which would include the user's first name, last name, address, email id, etc.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+ 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Detailed information about the medical history of the person
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+ 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+ 
 
-## Learn More
+## How does the data need to be processed?
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+ 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+We will use MongoDB, Mongoose to process the data.
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+We will be parsing and propagating values from the JSON object to the UI (user interface)
 
-### Analyzing the Bundle Size
+ 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+ 
 
-### Making a Progressive Web App
+## User Story
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+ 
 
-### Advanced Configuration
+As a patient/medical owner 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+ 
 
-### Deployment
+I want to be able to view and manage the 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+ 
 
-### `npm run build` fails to minify
+patient information/doctor’s office information, appointments, and upcoming schedule
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ 
+
+So that I can organize and plan my day/business. 
+
+ 
+
+## Acceptance Criteria 
+
+1.    Users should be able to sign up into the app using their name, email id, and password.
+
+ 
+
+2.    They will be able to access a list of medical providers to make the appointment.
+
+ 
+
+ 
+
+Going forward they should be able to log into the app that links them directly to that particular doctor’s office. 
+
+ 
+
+3.              Once the user makes an appointment they should be able to access their past and upcoming appointments.
+
+ 
+
+4.              The user will then be asked to fill out forms for their detailed medical history, the information is stored in their personal database for use by the doctor.
+
+ 
+
+5.              The user should also be able to add their personal sensitive information such as medical insurances, member ids. 
+
+ 
+
+6.              When the user selects a date, time, and place for the appointment, an email and SMS notification is sent to the user and doctor’s office. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+## Ideas for Future Development 
+
+ 
+
+When the user visits the doctor, an invoice is automatically generated.
+
+Stripe for credit card info/interchangeable with a different payment processor integration. 
+
+ 
+
+Use data to generate reports and projections to preempt any complications in health in the future.
+
+ 
+
+Send email/SMS reminders automatically.
+
+ 
+
+The patient can exchange direct messages with the doctor. 
+
+ 
+
+
