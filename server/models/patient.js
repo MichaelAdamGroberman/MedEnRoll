@@ -51,16 +51,23 @@ const patientSchema = new Schema({
     },
   },
   contact: {
-    Phone: {
+    phone: {
       cellPhone: {
         type: String,
         required: false,
       },
+      homePhone: {
+        type: String,
+        required: false,
+      },
+      workPhone: {
+        type: String,
+        required: false,
+      },
     },
-    homePhone: {
+    email: {
       type: String,
-      required: false,
+      required: true,
     },
-    workPh,
   },
 });
