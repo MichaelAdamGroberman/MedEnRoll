@@ -1,3 +1,4 @@
+const User = require('./User');
 const { Schema, model } = require('mongoose');
 const patientSchema = new Schema({
   registrationDate: {
