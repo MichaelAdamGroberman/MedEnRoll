@@ -6,31 +6,22 @@
 
 The user is the patient and the doctor’s office.
 
- 
 
- 
 
 ## How is it going to benefit the user?
 
 
 Will help overcome the inefficiencies related to paperwork and time-management while making the doctor’s appointments. 
 
- 
-
- 
 
 ## What data do we need to capture?
 
 
 Basic login information which would include the user's first name, last name, address, email id, etc.
 
- 
 
 Detailed information about the medical history of the person
 
- 
-
- 
 
 ## How does the data need to be processed?
 
@@ -43,15 +34,9 @@ We will be parsing and propagating values from the JSON object to the UI (user i
 
  
 
- 
-
 ## User Story
 
- 
-
 As a patient/medical owner 
-
- 
 
 I want to be able to view and manage the 
 
