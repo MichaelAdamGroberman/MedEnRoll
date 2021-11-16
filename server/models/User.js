@@ -25,7 +25,7 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  orders: [Order.schema],
+  appointments: [Appointments.schema],
 });
 
 // set up pre-save middleware to create password
