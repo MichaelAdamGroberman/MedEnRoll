@@ -221,6 +221,7 @@
   border-radius: 10px;
   height: 600px;
   overflow: hidden;
+  overflow-y: scroll;
   
 }
 .container-staff{
