@@ -1,7 +1,11 @@
+import Navbar from '../components/Navbar/Navbar';
+import UserForm from '../components/User/UserForm';
+
 function Home() {
   return (
     <div>
-      <div>Page Not Created Yet,Home</div>;
+      {/* <Navbar /> */}
+      <UserForm />
     </div>
   );
 }

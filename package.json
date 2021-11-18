@@ -13,6 +13,7 @@
     "author": "Slackers",
     "license": "MIT",
     "dependencies": {
+        "boxicons": "^2.0.9",
         "concurrently": "^6.4.0"
     }
 }

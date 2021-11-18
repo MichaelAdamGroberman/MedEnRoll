@@ -33,7 +33,7 @@ function App() {
         <div>
           <Switch>
             <Route exact path='/'>
-              <Profile />
+              <Home />
             </Route>
             <Route exact path='/'>
               <Profile />
