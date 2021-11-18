@@ -6,6 +6,7 @@ import { setContext } from '@apollo/client/link/context';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
+import { StoreProvider } from './utils/GlobalState';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -30,22 +31,14 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div>
-          <Switch>
-            <Route exact path='/'>
-              <Home />
-            </Route>
-            <Route exact path='/'>
-              <Profile />
-            </Route>
-            {/* TODO: Insurance information on a separate page? */}
-            {/* <Route exact path='/Profile/:id'>
-              <Vote />
-            </Route> */}
-            <Route>
-              <NotFound />
-            </Route>
-          </Switch>
+      <div>
+          <StoreProvider>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/profile" component={Profile} />
+              <Route component={NotFound} />
+            </Switch>
+          </StoreProvider>
         </div>
       </Router>
     </ApolloProvider>

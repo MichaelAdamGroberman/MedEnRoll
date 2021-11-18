@@ -1,7 +1,7 @@
 function Home() {
   return (
     <div>
-      <div>Page Not Created Yet,Home</div>;
+      <div>Welcome home</div>;
     </div>
   );
 }
