@@ -1,4 +1,6 @@
-import './Profile.css';
+import '../styles/Profile.css';
+import 'boxicons'
+
 function Profile() {
   return (
     <div>
