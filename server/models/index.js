@@ -1,5 +1,6 @@
-const appointment = require('./appointment');
-const patient = require('./patient');
-const provider = require('./providers');
+const Appointment = require('./appointment');
+const Patient = require('./patient');
+const MedicalProvider = require('./medicalprovider');
+const User = require('./user');
 
-module.exports = { appointment, patient, provider };
+module.exports = { Appointment, Patient, MedicalProvider, User };

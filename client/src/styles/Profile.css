@@ -1,11 +1,4 @@
-body {
-  position: relative;
-  min-height: 100vh;
-  width: 100%;
-  overflow: hidden;
-}
-
-.profile_body {
+.body {
   position: absolute;
   height: 100%;
   width: calc(100% - 240px);

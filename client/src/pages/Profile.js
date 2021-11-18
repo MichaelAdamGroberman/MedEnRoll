@@ -1,10 +1,9 @@
-import './Profile.css';
-import Navbar from '../components/Navbar/Navbar';
+import '../styles/Profile.css';
+import 'boxicons'
 
 function Profile() {
   return (
     <div>
-      <Navbar />
       <div className='profile_body'>
         <h1>Welcome</h1>
         <div className='body_btn'>
