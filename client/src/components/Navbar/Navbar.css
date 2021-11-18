@@ -6,10 +6,9 @@
   width: 240px;
   background: lightblue;
   padding: 6px, 14px;
-  color: rgb(80, 74, 74);
 }
 .sidebar .logo_content .logo {
-  color: rgb(129, 155, 13);
+  color: #fff;
   display: flex;
   height: 50px;
   width: 100%;
@@ -19,9 +18,8 @@
   margin-right: 5px;
 }
 .logo_content .logo .logo_name {
-  font-size: 18pt;
-  font-weight: bold;
-  padding: 5px;
+  font-size: 20px;
+  font-weight: 400;
 }
 .sidebar ul {
   margin-top: 20px;
@@ -33,14 +31,10 @@
   margin: 0 5px;
   list-style: none;
   line-height: 50px;
-  display: flex; 
-  padding: 5px;
-  border-radius: 5px;
+  display: flex;
+  align-items: center;
 }
-.sidebar ul li:hover
-{
-  background-color: antiquewhite;
-}
+
 .sidebar ul li box-icon {
   height: 25px;
   min-width: 40px;

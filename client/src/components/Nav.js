@@ -6,7 +6,7 @@ import 'boxicons';
 function Nav() { 
     if (Auth.loggedIn()) {      
         return ( 
-          <div className='sidebar'>
+          <nav className='sidebar'>
             <div className='logo_content'>
               <div className='logo'>
                 <div className='logo_name'>
@@ -33,17 +33,20 @@ function Nav() {
                   <span className='links_name'>Insurance</span>
                 </li>
                 <li>
-                  <box-icon name='log-out' type='solid'></box-icon>
-                  <span className='links_name'>Log-out</span>
+                  {/* this is not using the Link component to logout or user and then refresh the application to the start */}
+                  <a href="/" onClick={() => Auth.logout()}>
+                    <box-icon name='log-out' type='solid'></box-icon> 
+                    <span className='links_name'>Log-out</span> 
+                  </a>
                 </li>
               </ul>
             </div>
-          </div> 
+          </nav> 
       );
     } 
     else {      
       return ( 
-        <div className='sidebar'>
+        <nav className='sidebar'>
           <div className='logo_content'>
             <div className='logo'>
               <div className='logo_name'>
@@ -54,22 +57,26 @@ function Nav() {
             </div>
             <ul className='nav_list'> 
               <li>
-                <box-icon name='home' type='solid'></box-icon>
-                <span className='links_name'>Home</span>
+                <Link to="/">
+                  <box-icon name='home' type='solid'></box-icon>
+                  <span className='links_name'>Home</span>
+                </Link>
               </li> 
               <li>
-                <box-icon name='wallet-alt' type='solid'></box-icon>
-                <span className='links_name'>Sign Up</span>
+                <Link to="/signup">
+                  <box-icon name='wallet-alt' type='solid'></box-icon>
+                  <span className='links_name'>Sign Up</span>
+                </Link>
               </li>
               <li>               
                 <Link to="/login">
-                  <box-icon name='log-out' type='solid'></box-icon> 
+                  <box-icon name='log-in' type='solid'></box-icon> 
                   <span className='links_name'>Log-In</span> 
                 </Link>
               </li>
             </ul>
           </div>
-        </div> 
+        </nav> 
     );
   } 
 }

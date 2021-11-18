@@ -4,40 +4,7 @@ import 'boxicons'
 function Profile() {
   return (
     <div>
-      <div className='sidebar'>
-        <div className='logo_content'>
-          <div className='logo'>
-            <div className='logo_name'>
-              <box-icon type='logo' name='medium-old'></box-icon>
-              MedEnRoll
-            </div>
-            <box-icon name='menu'></box-icon>
-          </div>
-          <ul className='nav_list'>
-            <li>
-              <box-icon name='grid-alt'></box-icon>
-              <span className='links_name'>Dashboard</span>
-            </li>
-            <li>
-              <box-icon name='home' type='solid'></box-icon>
-              <span className='links_name'>Home</span>
-            </li>
-            <li>
-              <box-icon name='notepad' type='solid'></box-icon>
-              <span className='links_name'>Appointment</span>
-            </li>
-            <li>
-              <box-icon name='wallet-alt' type='solid'></box-icon>
-              <span className='links_name'>Insurance</span>
-            </li>
-            <li>
-              <box-icon name='log-out' type='solid'></box-icon>
-              <span className='links_name'>Log-out</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div className='body'>
+      <div className='profile_body'>
         <h1>Welcome</h1>
         <div className='body_btn'>
           <button>User info</button>

@@ -1,15 +1,15 @@
+import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-
-import Home from './pages/Home';
-import Profile from './pages/Profile';
-import NotFound from './pages/NotFound';
-import { StoreProvider } from './utils/GlobalState';
-import Login from './pages/Login';
 import Nav from './components/Nav';
+import UserForm from './components/User/UserForm';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import NotFound from './pages/NotFound';
+import Profile from './pages/Profile';
 import './styles/App.css';
+import { StoreProvider } from './utils/GlobalState';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -33,7 +33,7 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
+      <Router> 
         <StoreProvider>
           <Nav/>
           <main>            
@@ -41,6 +41,8 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/signup" component={Home} />
               <Route exact path="/profile" component={Profile} />
+              <Route exact path="/profile/:id" component={UserForm} />
+              <Route exact path="/insurance" component={UserForm} />
               <Route exact path="/login" component={Login} />
               <Route component={NotFound} />
             </Switch>

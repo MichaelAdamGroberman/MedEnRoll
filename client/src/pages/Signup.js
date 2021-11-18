@@ -35,13 +35,13 @@ function Signup(props) {
   return (
     
     <form onSubmit={handleFormSubmit}>
-    <Container className="form-container">
+    <Container className="form-container signup-container">
       <Row><Col className="form-title">Signup</Col></Row>
       <Row>
-        <Col width="260"> 
+        <Col md={5}> 
           <img className='signup-img'  src='images/signup-bg.jpg' alt='doctor' />
         </Col>
-        <Col width="400"> 
+        <Col md={7}> 
           <div className="flex-row space-between my-2">
             <label htmlFor="firstName">First Name:</label>
             <input
@@ -86,11 +86,11 @@ function Signup(props) {
               onChange={handleChange}
             />
           </div>
-          <div className="flex-row flex-end">
+          <div className="flex-row flex-end text-center">
             <button type="submit" className="btn btn-primary">Submit</button>
           </div>
-          <div className="flex-row flex-end">
-                Already have an account?
+          <div className="flex-row flex-end text-center">
+                Already have an account? 
                 <Link to="/login">Login</Link>
           </div>      
         </Col> 

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { Link } from 'react-router-dom';
 import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
+import {Container, Row,Col} from 'react-bootstrap';
 
 function Login(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -30,14 +30,14 @@ function Login(props) {
   };
 
   return (
-    <div className="container my-1">
-      <Link to="/signup">← Go to Signup</Link>
-
-      <h2>Login</h2>
-      <form onSubmit={handleFormSubmit}>
+    <form onSubmit={handleFormSubmit}> 
+    <Container className="form-container login-container" >
+      <Row><Col className="form-title">Login</Col></Row>
+      <Row><Col>
         <div className="flex-row space-between my-2">
           <label htmlFor="email">Email address:</label>
           <input
+            className="form-control"
             placeholder="youremail@test.com"
             name="email"
             type="email"
@@ -47,7 +47,8 @@ function Login(props) {
         </div>
         <div className="flex-row space-between my-2">
           <label htmlFor="pwd">Password:</label>
-          <input
+          <input          
+            className="form-control"
             placeholder="******"
             name="password"
             type="password"
@@ -60,11 +61,13 @@ function Login(props) {
             <p className="error-text">The provided credentials are incorrect</p>
           </div>
         ) : null}
-        <div className="flex-row flex-end">
-          <button type="submit">Submit</button>
+        <div className="flex-row flex-end text-center">
+          <button type="submit" class="btn btn-primary">Submit</button>
         </div>
-      </form>
-    </div>
+        </Col>
+        </Row>
+      </Container>
+    </form>
   );
 }
 

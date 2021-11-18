@@ -2,7 +2,7 @@ import Signup from "./Signup";
 
 function Home() {
   return (
-    <div>      
+    <div class="text-center">      
       <h1>Welcome to MedEnRoll</h1>
       <h2>
         Making appointments just got easier. Get rid of long queues and doctor's forms 
