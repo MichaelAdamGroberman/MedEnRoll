@@ -4,48 +4,8 @@ body {
   width: 100%;
   overflow: hidden;
 }
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 240px;
-  background: lightblue;
-  padding: 6px, 14px;
-}
-.sidebar .logo_content .logo {
-  color: #fff;
-  display: flex;
-  height: 50px;
-  width: 100%;
-}
-.logo_content .logo box-icon {
-  font-size: 28px;
-  margin-right: 5px;
-}
-.logo_content .logo .logo_name {
-  font-size: 20px;
-  font-weight: 400;
-}
-.sidebar ul {
-  margin-top: 20px;
-}
-.sidebar ul li {
-  position: relative;
-  height: 50px;
-  width: 100%;
-  margin: 0 5px;
-  list-style: none;
-  line-height: 50px;
-  display: flex;
-  align-items: center;
-}
 
-.sidebar ul li box-icon {
-  height: 25px;
-  min-width: 40px;
-}
-.body {
+.profile_body {
   position: absolute;
   height: 100%;
   width: calc(100% - 240px);
