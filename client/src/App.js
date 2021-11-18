@@ -6,6 +6,7 @@ import { setContext } from '@apollo/client/link/context';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
+import UserForm from './components/User/UserForm';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -35,14 +36,16 @@ function App() {
             <Route exact path='/'>
               <Home />
             </Route>
-            <Route exact path='/'>
+            <Route exact path='/Profile'>
               <Profile />
             </Route>
-            {/* TODO: Insurance information on a separate page? */}
-            {/* <Route exact path='/Profile/:id'>
-              <Vote />
-            </Route> */}
-            <Route>
+            <Route exact path='/Profile/:id'>
+              <UserForm />
+            </Route>
+            <Route exact path='/Insurance'>
+              <UserForm />
+            </Route>
+            <Route exact path='NotFound'>
               <NotFound />
             </Route>
           </Switch>
