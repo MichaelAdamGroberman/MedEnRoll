@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 
-const useSignUpForm = (callback, validate) => {
+const useForm = (callback, validate) => {
   const [values, setValues] = useState({
-    firstname:'',
-    lastname:'',
+
     email: '',
     password: ''
   });
@@ -18,8 +17,8 @@ const useSignUpForm = (callback, validate) => {
     });
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const handleSubmit = event => {
+    event.preventDefault();
 
     setErrors(validate(values));
     setIsSubmitting(true);
@@ -37,4 +36,4 @@ const useSignUpForm = (callback, validate) => {
   return { handleChange, handleSubmit, values, errors };
 };
 
-export default useSignUpForm;
+export default useForm;

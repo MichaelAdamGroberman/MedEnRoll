@@ -1,0 +1,27 @@
+.body {
+  position: absolute;
+  height: 100%;
+  width: calc(100% - 240px);
+  left: 240px;
+}
+.body_btn {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.body_btn button {
+  padding: 20px;
+  margin: 10px;
+  background: lightblue;
+  border: none;
+  border-radius: 15px;
+}
+.appointment_card {
+  display: flex;
+  border: solid;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 30px;
+}
+.appointment_card ul li {
+  list-style: none;
+}
