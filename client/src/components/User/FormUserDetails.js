@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { UPDATE_PATIENT } from '../../utils/mutations';
+import React from 'react'; 
 import '../../styles/Form.css';
 import { makeStyles } from '@material-ui/core/styles';
-import {  TextField} from '@material-ui/core';
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DatePicker from '@mui/lab/DatePicker'; 
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 const useStyles = makeStyles({
   mainContainer: {
@@ -19,94 +24,75 @@ const useStyles = makeStyles({
     padding: '10px',
   },
   field:{ 
-    width: '100%', 
-    margin: '5px 0',
+    margin: '5px 5px',
     borderColor:'white !important'    
   }
 });
 
-const FormUserDetails = ({data}) => { 
-  const [formState, setFormState] = useState(data || {});
-  const [updatePatient] = useMutation(UPDATE_PATIENT);
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    console.log(formState);
-     await updatePatient({
-      variables: {
-        gender: formState.gender,
-        dob: formState.dob,
-        firstName: formState.firstName,
-        middleName: formState.middleName,
-        lastName: formState.lastName,
-      }
-    });
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
-
+const FormUserDetails = ({formData, handleFormSubmit, handleFieldChange}) => {  
+  formData = formData || {};
   const classes = useStyles();
-  return (     
-  
-  <form onSubmit={handleFormSubmit}>
-    <div className="form-container">
+  return (   
+    <form>
         <TextField 
           className={classes.field}
           label='First Name'
           variant='outlined'
-          name="firstName"
-          id="firstName"
-          inputProps={ {value:formState.firstName} }
-          onChange={handleChange}
+          size="small"
+          margin="normal" 
+          inputProps={ {value:formData?.firstName} }
+          onChange={ (event) => { handleFieldChange("firstName", event.target.value); }}
         />
         <TextField 
           className={classes.field}
           label='Middle Name'
           variant='outlined'
-          name="middleName"
-          id="middleName"
-          inputProps={ {value:formState.middleName} } 
-          onChange={handleChange}
+          size="small"
+          margin="normal" 
+          inputProps={ {value:formData?.middleName} } 
+          onChange={ (event) => { handleFieldChange("middleName", event.target.value); }}
         />
         <TextField 
           className={classes.field}
           label='Last Name'
           variant='outlined'
-          name="lastName"
-          id="lastName" 
-          inputProps={ {value:formState.lastName} } 
-          onChange={handleChange}
+          size="small"
+          margin="normal" 
+          inputProps={ {value:formData?.lastName} } 
+          onChange={ (event) => { handleFieldChange("lastName", event.target.value); }}
         />
-        <TextField 
-          className={classes.field}
-          label='Date of Birth'
-          variant='outlined'
-          name="dob"
-          id="dob"
-          inputProps={ {value:formState.dob} } 
-          onChange={handleChange}
-        />
-        <TextField
-          className={classes.field}
-          label='Gender'
-          variant='outlined'
-          name="gender"
-          id="gender"
-          inputProps={ {value:formState.gender} } 
-          onChange={handleChange}
-        />
+        <div>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              label="Date of Birth"
+              value={formData?.dob}
+              onChange={(newDate) => { handleFieldChange("dob", new Date(newDate)); }}
+              renderInput={(params) => (
+                <TextField 
+                size="small"
+                margin="normal" 
+                {...params} helperText={params?.inputProps?.placeholder} />
+              )}
+            />
+          </LocalizationProvider>      
 
-        <div className="flex-row flex-end text-center">
-          <button type="submit" className="btn btn-primary">Save</button>
+          <FormControl sx={{width: 180 }} margin="normal" >
+            <InputLabel id="gender-label">Gender</InputLabel>
+            <Select
+              className={classes.field}
+              labelId="demo-simple-select-autowidth-label"
+              value={formData?.gender}
+              label="Gender"
+              size="small"
+              onChange={(event) => { handleFieldChange("gender", event.target.value); }}
+            >
+              <MenuItem value={'NotSpecified'}>Not Specified</MenuItem>
+              <MenuItem value={'Male'}>Male</MenuItem>
+              <MenuItem value={'Female'}>Female</MenuItem>
+            </Select>
+          </FormControl>
         </div>
-      </div>
-    </form>
+    </form> 
   );
 };
 
