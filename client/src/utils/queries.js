@@ -1,16 +1,23 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_PRODUCTS = gql`
-  query getProducts($category: ID) {
-    products(category: $category) {
+export const GET_PATIENT = gql`
+  query getPatient($userId: ID!) {
+    patient(_id:$userId) {
       _id
-      name
-      description
-      price
-      quantity
-      image
-      category {
-        _id
+      firstName
+      middleName
+      lastName
+      gender
+      address {
+        street
+      }
+      contact {
+        cellPhone
+      }
+      appointments {
+        appointmentDateTime
+        duration
+        provider
       }
     }
   }

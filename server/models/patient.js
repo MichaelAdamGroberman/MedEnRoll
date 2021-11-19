@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const Contact = require('./contact');
+const Address = require('./address');
+const Appointment = require('./appointment');
 
-const patientSchema = new Schema({
+const patientSchema = new Schema({  
   registrationDate: {
     type: Date,
-    required: true,
+    required: false,
   },
   firstName: {
     type: String,
@@ -25,54 +28,19 @@ const patientSchema = new Schema({
   maritialStatus: {
     type: String,
     required: false,
-  },
-  /*
+  },  
   dob: {
     type: Date,
     required: true,
+  },  
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   },
-  age: {
-    type: Number,
-    required: false,
-  },
-  address: {
-    Street: {
-      type: String,
-      required: true,
-    },
-    City: {
-      type: String,
-      required: true,
-    },
-    State: {
-      type: String,
-      required: true,
-    },
-    zip: {
-      type: String,
-      required: true,
-    },
-  },
-  contact: {
-    phone: {
-      cellPhone: {
-        type: String,
-        required: false,
-      },
-      homePhone: {
-        type: String,
-        required: false,
-      },
-      workPhone: {
-        type: String,
-        required: false,
-      },
-    },
-    email: {
-      type: String,
-      required: true,
-    },
-  },*/
+  address: Address.schema,  
+  contact: Contact.schema,
+  appointments: [Appointment.schema]
 });
 
 const Patient = mongoose.model('Patient', patientSchema);

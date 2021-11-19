@@ -6,7 +6,7 @@ const resolvers = {
   Query: {
     patients: async () => {
       return await Patient.find();
-    },    
+    },
     providers: async () => {
       return await MedicalProvider.find();
     },
@@ -16,9 +16,18 @@ const resolvers = {
         return user;
       }
       throw new AuthenticationError('Not logged in');
-    }
+    },
+    patient: async (parent, { _id }, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id); 
+        const result = await Patient.findOne({userId: user._id });
+        return result;
+      }      
+      throw new AuthenticationError('Not logged in');
+    },
   },
   Mutation: {
+    /********* User Related *************** */
     addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
@@ -32,6 +41,28 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+    /********* Patient Related *************** */
+    addOrUpdatePatient: async (parent, args, context) => {
+      if (context.user) {
+        const filter = {userId: context.user._id};
+        const update = {...args,  userId: context.user._id  };
+        return await Patient.findOneAndUpdate(filter, update, { new: true, upsert: true });
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+    /********* Appointment Related *************** */
+    addAppointment: async (parent, args, context) => {
+      if (context.user) {
+        const filter = {userId: context.user._id};
+        const appointment = {...args }; //Appointment data
+        return await Patient.findOneAndUpdate(filter, 
+        {
+          "$push": {appointments: appointment}
+        }, { new: true, upsert: true });
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+     /********* Login Related *************** */
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -46,7 +77,6 @@ const resolvers = {
       }
 
       const token = signToken(user);
-
       return { token, user };
     }
   }
