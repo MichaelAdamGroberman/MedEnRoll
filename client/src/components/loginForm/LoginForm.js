@@ -63,7 +63,7 @@ function LoginForm(props) {
           </div>
         ) : null}
         <div className="flex-row flex-end text-center">
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" className="btn btn-primary">Submit</button>
         </div>
         </Col>
         </Row>

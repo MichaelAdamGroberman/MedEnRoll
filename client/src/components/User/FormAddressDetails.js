@@ -16,26 +16,45 @@ const useStyles = makeStyles({
     height: 'auto',
     padding: '2rem',
   },
+  field:{ 
+    margin: '5px 5px',
+    borderColor:'white !important'    
+  }
 });
 
-const FormAddressDetails = () => {
+const FormAddressDetails =({formData, handleFormSubmit, handleFieldChange}) => { 
+  formData = formData || {}; 
   const classes = useStyles();
   return (
-    <div className={classes.mainContainer}>
-      <div className={classes.formContainer}>
-        <form>
-          <TextField
-            style={{ width: '100%', margin: '1rem 0' }}
-            label='Street'
-            variant='outlined'
-          />
-          <TextField style={{ width: '100%', margin: '1rem 0' }} label='Apt' variant='outlined' />
-          <TextField style={{ width: '100%', margin: '1rem 0' }} label='City' variant='outlined' />
-          <TextField style={{ width: '100%', margin: '1rem 0' }} label='State' variant='outlined' />
-          <TextField style={{ width: '100%', margin: '1rem 0' }} label='Zip' variant='outlined' />
-        </form>
-      </div>
-    </div>
+    <form> 
+      <TextField
+        className={classes.field}
+        label='Street'
+        variant='outlined'
+        size="small"
+        margin="normal" 
+        inputProps={ {value:formData?.street} }
+        onChange={ (event) => { handleFieldChange("street", event.target.value); }}
+      />
+      <TextField className={classes.field} label='City' variant='outlined' 
+        size="small"
+        margin="normal" 
+        inputProps={ {value:formData?.city} }
+        onChange={ (event) => { handleFieldChange("city", event.target.value); }}
+      />
+      <TextField className={classes.field} label='State' variant='outlined' 
+        size="small"
+        margin="normal" 
+        inputProps={ {value:formData?.state} }
+        onChange={ (event) => { handleFieldChange("state", event.target.value); }}
+      />
+      <TextField className={classes.field} label='Zip' variant='outlined' 
+        size="small"
+        margin="normal" 
+        inputProps={ {value:formData?.field} }
+        onChange={ (event) => { handleFieldChange("zip", event.target.value); }}
+      />
+    </form> 
   );
 };
 
