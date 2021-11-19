@@ -8,9 +8,10 @@ import FormInsuranceDetails from './UserInsuranceDetails';
 
 const useStyles = makeStyles({
   root: {
-    margin: '6rem auto',
+    margin: '5px auto',
     width: '80%',
-    border: '1px solid black',
+    borderRadius:'5px',
+    border: '1px solid white',
     '& .MuiStepIcon-root.MuiStepIcon-active': { color: 'lightblue' },
     '& .MuiStepIcon-root.MuiStepIcon-completed': { color: 'lightblue' },
   },
@@ -58,7 +59,6 @@ const UserForm = () => {
         ) : (
           <>
             {getStepsContent(activeStep)}
-
             <Button onClick={handleNext}>{activeStep === steps.length ? 'Finish' : 'Next'}</Button>
           </>
         )}
