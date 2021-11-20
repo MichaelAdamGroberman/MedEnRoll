@@ -15,6 +15,8 @@ const AppointmentList = ({patientData}) => {
 
     Moment.locale('en'); 
     const apptList = patientData?.patient?.appointments ||[];
+    console.log("apptList");
+    console.log(apptList);
     let rows = apptList.map(appt => { 
       var aptRow = { 
           ...appt, 

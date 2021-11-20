@@ -36,3 +36,11 @@ code {
 .home-img{
   width:500px;
 }
+
+.dashboard-item{
+  font-size:20pt;
+  padding:30px;
+  text-align: center;
+  width:400px;
+  margin:40px;
+}

@@ -20,13 +20,14 @@
 }
 
 .icon {
-  font-size: 16px;
+  font-size: 16pt;
 }
 
 .sidebar .logo_content .logo {
   color: #fff !important;
   background-color: rgb(88, 138, 139);
-  display: flex;
+  display: flex;  
+  font-size: 18pt;
   width: 100%;
 }
 
@@ -36,7 +37,6 @@
 }
 
 .logo_content .logo .logo_name {
-  font-size: 18pt;
   font-weight: bold;
   padding: 5px;
 }

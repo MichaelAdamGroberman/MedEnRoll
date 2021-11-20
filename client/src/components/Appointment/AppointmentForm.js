@@ -27,7 +27,9 @@ const AppointmentForm = ({handleAfterSave}) => {
 
 /////////////////////////////////////////////////////////////////////////////
 
-  var appointmentData = {};
+  const appointmentData = {
+    appointmentDateTime: new Date()
+  };
 
   const [formState, setFormState] = useState(appointmentData || {});
   const [addAppointment] = useMutation(ADD_APPOINTMENT); 
@@ -67,8 +69,9 @@ const AppointmentForm = ({handleAfterSave}) => {
         }
       }
     });
-    if(handleAfterSave)
-      handleAfterSave();
+    setFormState(appointmentData);
+    if(handleAfterSave) 
+      handleAfterSave();      
   };
 
 

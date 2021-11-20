@@ -17,6 +17,7 @@ function LoginForm(props) {
       });
       const token = mutationResponse.data.login.token;
       Auth.login(token);
+      window.location.href= "/dashboard";
     } catch (e) {
       console.log(e);
     }

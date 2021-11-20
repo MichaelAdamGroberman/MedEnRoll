@@ -71,7 +71,7 @@ const FormUserDetails = ({formData, parentField, handleFieldChange}) => {
                 <TextField 
                 size="small"
                 margin="normal" 
-                {...params} helperText={params?.inputProps?.placeholder} />
+                {...params} />
               )}
             />
           </LocalizationProvider>      

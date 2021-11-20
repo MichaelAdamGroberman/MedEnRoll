@@ -32,9 +32,9 @@ function Appointments() {
 
   return (
     <>
-      <header class="page-header">
+      <header className="page-header">
         <box-icon name='calendar' className="page-header-icon"  color='rgb(216, 253, 253)' ></box-icon>
-        <span> Patient Appointments ({patientData.firstName })</span>
+        <span> Patient Appointments ({patientData?.firstName })</span>
       </header>
       <AppointmentForm handleAfterSave={refetch}></AppointmentForm>
       <AppointmentList patientData={data}></AppointmentList>

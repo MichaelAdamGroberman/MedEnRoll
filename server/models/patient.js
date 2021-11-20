@@ -23,7 +23,7 @@ const patientSchema = new Schema({
   },
   gender: {
     type: String,
-    required: true,
+    required: false,
   },
   maritialStatus: {
     type: String,
