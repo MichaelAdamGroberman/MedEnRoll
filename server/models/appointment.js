@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
 
+const { Schema } = mongoose;
 const appointmentSchema = new Schema({
   appointmentDateTime: {
     type: Date,
