@@ -21,7 +21,8 @@ const resolvers = {
       if (context.user) {
         const user = await User.findById(context.user._id); 
         const result = await Patient.findOne({userId: user._id }) ||{};
-        result.dob = (new Date(result.dob)).toString();
+        if(result.dob) result.dob = (new Date(result.dob)).toString();
+        else result.dob = '';
         return result;
       }      
       throw new AuthenticationError('Not logged in');

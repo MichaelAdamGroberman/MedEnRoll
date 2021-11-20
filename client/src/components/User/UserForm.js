@@ -17,7 +17,7 @@ const UserForm = () => {
     // pass URL parameter
     variables: { userId: -1 }
   });
-  const [formState, setFormState] = useState(patientData || {});
+
   const [updatePatient] = useMutation(UPDATE_PATIENT); 
   
   useEffect (() => {
@@ -40,7 +40,7 @@ const UserForm = () => {
   const handleFieldChange = (name, value, parentField) => { 
 
     let newState = {};
-    newState = { ...formState, newState }
+    newState = { ...patientData, newState }
 
     if (parentField) {
       newState = {
@@ -58,16 +58,16 @@ const UserForm = () => {
       }
     }
 
-    setFormState(newState);
+    setPatientData(newState);
     console.log(newState);
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
+    console.log(patientData);
 
     let newState = {};
-    newState = { ...formState, newState }
+    newState = { ...patientData, newState }
     newState = {
       ...newState, 
         address : {
@@ -78,16 +78,15 @@ const UserForm = () => {
         } 
     };
 
-    setFormState(newState);
-    const addr = formState.address;
-    const contact = formState.contact;
+    const addr = patientData.address||{};
+    const contact = patientData.contact||{};
      await updatePatient({
       variables: {
-        gender: formState.gender,
-        dob: formState.dob,
-        firstName: formState.firstName,
-        middleName: formState.middleName,
-        lastName: formState.lastName,
+        gender: patientData.gender,
+        dob: patientData.dob,
+        firstName: patientData.firstName,
+        middleName: patientData.middleName,
+        lastName: patientData.lastName,
         address: {
           street: addr.street,
           city: addr.city,
@@ -101,7 +100,7 @@ const UserForm = () => {
           homePhone: contact.homePhone,
           workPhone: contact.workPhone
         },
-        appointments:formState.appointments
+        appointments:patientData.appointments
       }
     });
   };
@@ -143,8 +142,8 @@ const UserForm = () => {
           ))}
         </Stepper>
         {activeStep === steps.length ? ('The Steps Completed') : (
-          <form>
-            { getStepsContent(activeStep, formState ) }
+          <>
+            { getStepsContent(activeStep, patientData ) }
             <div className="form-footer">
                 <button type="button" className="btn btn-info pull-left" onClick={handlePrevious}>
                   Previous
@@ -158,7 +157,7 @@ const UserForm = () => {
                   Save
                 </button>
             </div>            
-            </form>
+            </>
         )}     
         </div> 
     </>
