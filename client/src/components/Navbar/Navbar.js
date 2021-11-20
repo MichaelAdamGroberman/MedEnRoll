@@ -46,7 +46,7 @@ function Navbar() {
               <ul className='nav_list'>
                 { renderNavItem("Dashboard", "grid-alt", "/dashboard") }
                 { renderNavItem("Profile", "user-circle", "/profile") }
-                { renderNavItem("Appointment", "notepad", "/appointment") }
+                { renderNavItem("Appointments", "notepad", "/appointments") }
                 { renderNavItem("Insurance", "wallet-alt", "/insurance") } 
                 { renderNavItem("Log out", "log-out", "/",() => Auth.logout() ) }  
               </ul>

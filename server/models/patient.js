@@ -30,8 +30,8 @@ const patientSchema = new Schema({
     required: false,
   },  
   dob: {
-    type: Date,
-    required: true,
+    type: String,
+    required: false,
   },  
   userId: {
     type: Schema.Types.ObjectId,

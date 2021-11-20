@@ -1,5 +1,5 @@
 
-import LoginForm from "../components/loginForm/LoginForm";
+import LoginForm from "../components/LoginForm/LoginForm";
 import './style.css';
 function Signup() {
   return (

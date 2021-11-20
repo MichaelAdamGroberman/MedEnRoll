@@ -69,6 +69,22 @@ const UserForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
+
+    let newState = {};
+    newState = { ...formState, newState }
+    newState = {
+      ...newState, 
+        address : {
+          ...newState['address']
+        } , 
+        contact: {
+          ...newState['contact']
+        } 
+    };
+
+    setFormState(newState);
+    const addr = formState.address;
+    const contact = formState.contact;
      await updatePatient({
       variables: {
         gender: formState.gender,
@@ -76,10 +92,22 @@ const UserForm = () => {
         firstName: formState.firstName,
         middleName: formState.middleName,
         lastName: formState.lastName,
-        address:formState.address,
-        contact: formState.contact,
+        address: {
+          street: addr.street,
+          city: addr.city,
+          state: addr.state,
+          zip: addr.zip
+        },
+        contact: {
+          primaryEmail: contact.primaryEmail,
+          alternateEmail: contact.alternateEmail,
+          cellPhone: contact.cellPhone,
+          homePhone: contact.homePhone,
+          workPhone: contact.workPhone
+        },
         appointments:formState.appointments
       }
+      //variables: newState
     });
   };
 

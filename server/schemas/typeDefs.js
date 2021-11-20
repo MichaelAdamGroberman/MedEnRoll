@@ -84,7 +84,6 @@ input AddressInput {
 }
 
 input AppointmentInput {
-  _id: ID
   appointmentDateTime: String
   duration: Int
   provider: String

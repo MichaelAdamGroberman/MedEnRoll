@@ -21,6 +21,8 @@ const resolvers = {
       if (context.user) {
         const user = await User.findById(context.user._id); 
         const result = await Patient.findOne({userId: user._id });
+        console.log(result.dob);
+        result.dob = (new Date(result.dob)).toString();
         return result;
       }      
       throw new AuthenticationError('Not logged in');
@@ -54,10 +56,11 @@ const resolvers = {
     addAppointment: async (parent, args, context) => {
       if (context.user) {
         const filter = {userId: context.user._id};
-        const appointment = {...args }; //Appointment data
+        const appointmentData = {...args };  
+
         return await Patient.findOneAndUpdate(filter, 
         {
-          "$push": {appointments: appointment}
+          "$push": {appointments: appointmentData.appointment}
         }, { new: true, upsert: true });
       }
       throw new AuthenticationError('Not logged in');

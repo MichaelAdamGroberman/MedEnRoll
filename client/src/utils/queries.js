@@ -8,16 +8,27 @@ export const GET_PATIENT = gql`
       middleName
       lastName
       gender
+      maritialStatus
+      dob
       address {
         street
+        city
+        state
+        zip
       }
       contact {
+        primaryEmail
+        alternateEmail
         cellPhone
+        homePhone
+        workPhone
       }
       appointments {
+        _id
         appointmentDateTime
         duration
         provider
+        description
       }
     }
   }
