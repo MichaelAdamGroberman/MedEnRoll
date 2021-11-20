@@ -22,39 +22,41 @@ const useStyles = makeStyles({
   }
 });
 
-const FormAddressDetails =({formData, handleFormSubmit, handleFieldChange}) => { 
+const FormAddressDetails =({formData, parentField, handleFieldChange}) => { 
   formData = formData || {}; 
+  const data = parentField? formData[parentField]: formData;
+
   const classes = useStyles();
   return (
-    <form> 
+    <> 
       <TextField
         className={classes.field}
         label='Street'
         variant='outlined'
         size="small"
         margin="normal" 
-        inputProps={ {value:formData?.street} }
-        onChange={ (event) => { handleFieldChange("street", event.target.value); }}
+        inputProps={ {value:data?.street} }
+        onChange={ (event) => { handleFieldChange("address.street", event.target.value, parentField); }}
       />
       <TextField className={classes.field} label='City' variant='outlined' 
         size="small"
         margin="normal" 
-        inputProps={ {value:formData?.city} }
-        onChange={ (event) => { handleFieldChange("city", event.target.value); }}
+        inputProps={ {value:data?.city} }
+        onChange={ (event) => { handleFieldChange("city", event.target.value, parentField); }}
       />
       <TextField className={classes.field} label='State' variant='outlined' 
         size="small"
         margin="normal" 
-        inputProps={ {value:formData?.state} }
-        onChange={ (event) => { handleFieldChange("state", event.target.value); }}
+        inputProps={ {value:data?.state} }
+        onChange={ (event) => { handleFieldChange("state", event.target.value, parentField); }}
       />
       <TextField className={classes.field} label='Zip' variant='outlined' 
         size="small"
         margin="normal" 
-        inputProps={ {value:formData?.field} }
-        onChange={ (event) => { handleFieldChange("zip", event.target.value); }}
+        inputProps={ {value:data?.field} }
+        onChange={ (event) => { handleFieldChange("zip", event.target.value, parentField); }}
       />
-    </form> 
+    </> 
   );
 };
 
