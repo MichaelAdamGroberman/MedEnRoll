@@ -29,11 +29,11 @@ const useStyles = makeStyles({
   }
 });
 
-const FormUserDetails = ({formData, handleFormSubmit, handleFieldChange}) => {  
+const FormUserDetails = ({formData, parentField, handleFieldChange}) => {  
   formData = formData || {};
   const classes = useStyles();
   return (   
-    <form>
+    <>
         <TextField 
           className={classes.field}
           label='First Name'
@@ -41,7 +41,7 @@ const FormUserDetails = ({formData, handleFormSubmit, handleFieldChange}) => {
           size="small"
           margin="normal" 
           inputProps={ {value:formData?.firstName} }
-          onChange={ (event) => { handleFieldChange("firstName", event.target.value); }}
+          onChange={ (event) => { handleFieldChange("firstName", event.target.value, parentField); }}
         />
         <TextField 
           className={classes.field}
@@ -50,7 +50,7 @@ const FormUserDetails = ({formData, handleFormSubmit, handleFieldChange}) => {
           size="small"
           margin="normal" 
           inputProps={ {value:formData?.middleName} } 
-          onChange={ (event) => { handleFieldChange("middleName", event.target.value); }}
+          onChange={ (event) => { handleFieldChange("middleName", event.target.value, parentField); }}
         />
         <TextField 
           className={classes.field}
@@ -59,14 +59,14 @@ const FormUserDetails = ({formData, handleFormSubmit, handleFieldChange}) => {
           size="small"
           margin="normal" 
           inputProps={ {value:formData?.lastName} } 
-          onChange={ (event) => { handleFieldChange("lastName", event.target.value); }}
+          onChange={ (event) => { handleFieldChange("lastName", event.target.value, parentField); }}
         />
         <div>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
               label="Date of Birth"
               value={formData?.dob}
-              onChange={(newDate) => { handleFieldChange("dob", new Date(newDate)); }}
+              onChange={(newDate) => { handleFieldChange("dob", new Date(newDate), parentField); }}
               renderInput={(params) => (
                 <TextField 
                 size="small"
@@ -81,18 +81,18 @@ const FormUserDetails = ({formData, handleFormSubmit, handleFieldChange}) => {
             <Select
               className={classes.field}
               labelId="demo-simple-select-autowidth-label"
-              value={formData?.gender}
+              value={formData?.gender||''}
               label="Gender"
               size="small"
-              onChange={(event) => { handleFieldChange("gender", event.target.value); }}
+              onChange={(event) => { handleFieldChange("gender", event.target.value, parentField); }}
             >
-              <MenuItem value={'NotSpecified'}>Not Specified</MenuItem>
+              <MenuItem value={''}>Not Specified</MenuItem>
               <MenuItem value={'Male'}>Male</MenuItem>
               <MenuItem value={'Female'}>Female</MenuItem>
             </Select>
           </FormControl>
         </div>
-    </form> 
+    </> 
   );
 };
 

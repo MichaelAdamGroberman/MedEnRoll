@@ -16,6 +16,22 @@
   color:rgb(35, 50, 87);
 }
 
+.form-footer{
+  padding:10px;
+  min-height: 60px;
+  overflow: auto;
+  background-color: #e8f6ff;
+}
+
+.form-footer::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.form-footer > button{
+  margin:6px;
+}
+
 .close-btn {
   position: absolute;
   top: 2%;
