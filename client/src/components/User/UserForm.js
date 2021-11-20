@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Stepper, Step, StepLabel, Button } from '@material-ui/core';
+import { Stepper, Step, StepLabel } from '@material-ui/core';
 import FormUserDetails from './FormUserDetails';
 import FormAddressDetails from './FormAddressDetails';
 import FormInsuranceDetails from './UserInsuranceDetails';
-
 import spinner from '../../assets/spinner.gif';
 import { useQuery, useMutation} from '@apollo/client';
 import { GET_PATIENT } from '../../utils/queries';
 import { UPDATE_PATIENT } from '../../utils/mutations';
-
 
 const useStyles = makeStyles({
   root: {
@@ -21,42 +19,50 @@ const useStyles = makeStyles({
   },
 });
 const UserForm = () => {
-  // React Hook
+
+  // React Hooks
   const [activeStep, setActiveStep] = useState(0);
-
-  function getSteps() {
-    return ['BASIC INFORMATION', 'ADDRESS', 'INSURANCE'];
-  }
-
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-  
-  const handlePrevious = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-  
-  const steps = getSteps();
-  const classes = useStyles();
- 
-  const { data:patientData, loading } = useQuery(GET_PATIENT, {
+  const { data:patientData, loading, error } = useQuery(GET_PATIENT, {
     // pass URL parameter
     variables: { userId: -1 }
   });
 
+  if(error) console.log(error);
+
   const [formState, setFormState] = useState(patientData?.patient || {});
   const [updatePatient] = useMutation(UPDATE_PATIENT);
- 
-  const formStateHandler = ()=>{
-    return formState;
-  }
+  const classes = useStyles();
 
-  const handleFieldChange = (name, value) => { 
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-    console.log(formState);
+
+  const getSteps = () => { return ['BASIC INFORMATION', 'ADDRESS', 'INSURANCE'];  };
+  const handleNext = () => { setActiveStep((prevActiveStep) => prevActiveStep + 1);  };  
+  const handlePrevious = () => { setActiveStep((prevActiveStep) => prevActiveStep - 1); };
+  
+  const steps = getSteps();
+
+  const handleFieldChange = (name, value, parentField) => { 
+
+    let newState = {};
+    newState = { ...formState, newState }
+
+    if (parentField) {
+      newState = {
+        ...newState,
+        [parentField]: {
+          ...newState[parentField],
+          [name] :value
+        }
+      }
+    }
+    else {
+      newState = {
+        ...newState, 
+          [name] :value 
+      }
+    }
+
+    setFormState(newState);
+    console.log(newState);
   };
 
   const handleFormSubmit = async (event) => {
@@ -69,24 +75,26 @@ const UserForm = () => {
         firstName: formState.firstName,
         middleName: formState.middleName,
         lastName: formState.lastName,
+        address:formState.address,
+        contact: formState.contact,
+        appointments:formState.appointments
       }
     });
   };
 
   
   const getStepsContent= (stepIndex, data) =>{
-    
     switch (stepIndex) {
       case 0:
         return <FormUserDetails 
                   formData={data} 
-                  handleFieldChange={ (name, value)=>{handleFieldChange(name, value);}} 
-                  handleFormSubmit={(event)=>{handleFormSubmit(event);}} />
+                  handleFieldChange={handleFieldChange} 
+                  parentField={null} />
       case 1:
         return <FormAddressDetails 
                   formData={data} 
-                  handleFieldChange={ (name, value)=>{handleFieldChange(name, value);}} 
-                  handleFormSubmit={(event)=>{handleFormSubmit(event);}} />
+                  handleFieldChange={handleFieldChange}                   
+                  parentField="address" />
       case 2:
         return <FormInsuranceDetails />;
       default:
@@ -94,38 +102,38 @@ const UserForm = () => {
     }
   }
 
+  if(loading)
+    return <img src={spinner} alt="loading" />;  
+
   return (
-    <div className={classes.root}>
-      <Stepper className={classes.root} activeStep={activeStep} alternativeLabel>
-        {steps.map((label) => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
-      <>
-        {activeStep === steps.length ? (
-          'The Steps Completed'
-        ) : (
-          <div className="form-container">
+    <div className={classes.root}>      
+      <div className="form-container">
+        <Stepper  activeStep={activeStep} alternativeLabel>
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+        {activeStep === steps.length ? ('The Steps Completed') : (
+          <form>
             { getStepsContent(activeStep, formState ) }
+            <div className="form-footer">
+                <button type="button" className="btn btn-info pull-left" onClick={handlePrevious}>
+                  Previous
+                </button>
 
-            <Button className="btn btn-warning float-left" onClick={handlePrevious}>
-              Previous
-            </Button>
+                <button type="button" className="btn btn-info pull-right" onClick={handleNext}>
+                  {activeStep === steps.length ? 'Finish' : 'Next'}
+                </button>
 
-            <Button className="btn btn-primary float-right" onClick={handleNext}>
-              {activeStep === steps.length ? 'Finish' : 'Next'}
-            </Button>
-
-            <button type="button" className="btn btn-primary"
-              onClick={handleFormSubmit}
-            >Save</button>
-
-          </div>
-        )}
-      </>
-      {loading ? <img src={spinner} alt="loading" /> : null}
+                <button type="button" className="btn btn-primary" onClick={handleFormSubmit}>
+                  Save
+                </button>
+            </div>            
+            </form>
+        )}     
+        </div> 
     </div>
   );
 };
