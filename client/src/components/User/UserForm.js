@@ -9,7 +9,7 @@ import spinner from '../../assets/spinner.gif';
 import { useQuery, useMutation} from '@apollo/client';
 import { GET_PATIENT } from '../../utils/queries';
 import { UPDATE_PATIENT } from '../../utils/mutations';
-
+import './style.css';
 
 const useStyles = makeStyles({
   root: {
