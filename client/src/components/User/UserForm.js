@@ -9,6 +9,7 @@ import { useQuery, useMutation} from '@apollo/client';
 import { GET_PATIENT } from '../../utils/queries';
 import { UPDATE_PATIENT } from '../../utils/mutations';
 
+
 const useStyles = makeStyles({
   root: {
     margin: '5px auto',

@@ -37,7 +37,7 @@ function SignupForm(props) {
     
     <form onSubmit={handleFormSubmit}>
     <Container className="form-container signup-container">
-      <Row><Col className="form-title">Signup</Col></Row>
+      <Row><Col className="form-title">Sign Up</Col></Row>
       <Row>
         <Col md={5}> 
           <img className='signup-img'  src='images/signup-bg.jpg' alt='doctor' />
@@ -88,7 +88,7 @@ function SignupForm(props) {
             />
           </div>
           <div className="flex-row flex-end text-center">
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary">Sign Up</button>
           </div>
           <div className="flex-row flex-end text-center">
                 Already have an account? 

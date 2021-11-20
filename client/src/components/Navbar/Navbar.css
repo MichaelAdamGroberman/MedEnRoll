@@ -8,6 +8,17 @@
   padding: 6px, 14px;
   color: rgb(80, 74, 74);
 }
+.nav-link{
+  text-decoration: none;
+  color: Black;
+}
+.nav-link:hover{
+  text-decoration: none;
+  color: Black;
+}
+.icon{
+  font-size: 16px;
+}
 .sidebar .logo_content .logo {
   color: rgb(129, 155, 13);
   display: flex;
@@ -25,6 +36,7 @@
 }
 .sidebar ul {
   margin-top: 20px;
+  padding-right: 10px;
 }
 .sidebar ul li {
   position: relative;
@@ -32,7 +44,9 @@
   width: 100%;
   margin: 0 5px;
   list-style: none;
+  text-decoration: none;
   line-height: 50px;
+  color: brown;
   display: flex; 
   padding: 5px;
   border-radius: 5px;
@@ -40,8 +54,10 @@
 .sidebar ul li:hover
 {
   background-color: antiquewhite;
+  text-decoration: none;
 }
+
 .sidebar ul li box-icon {
   height: 25px;
-  min-width: 40px;
+  /* min-width: 40px; */
 }

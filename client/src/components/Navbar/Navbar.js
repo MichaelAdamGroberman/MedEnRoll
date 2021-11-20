@@ -8,16 +8,20 @@ function renderNavItem(text, icon, path, action)
   return  (
     action?
     <li>
-      <a href={path} onClick={action}>
-        <box-icon name={icon} type='solid'></box-icon> 
-        <span className='links_name'>{text}</span> 
+      <a href={path} onClick={action} className="nav-link">
+        <box-icon name={icon} className="icon" style={{height:'20px',paddingTop:'5px'}} type='solid'></box-icon> 
+        {/* <span className='links_name'> */}
+          {text}
+          {/* </span>  */}
       </a>
     </li>
     :
     <li>               
-      <Link to={path}>
-        <box-icon name={icon} type='solid'></box-icon> 
-        <span className='links_name'>{text}</span> 
+      <Link  className="nav-link" to={path}>
+        <box-icon name={icon} className="icon" style={{height:'20px'}} type='solid'></box-icon> 
+        <span className='links_name' style={{paddingBottom:'10px'}}>
+          {text}
+          </span> 
       </Link>
     </li>
   );
@@ -31,12 +35,12 @@ function Navbar() {
         <div className='logo_content'>
           <div className='logo'>
             <div className='logo_name'>
-                <Link to="/">
-                  <box-icon type='logo' name='medium-old'></box-icon>
+                <Link to="/" className="nav-link">
+                  <box-icon type='logo'  name='medium-old'></box-icon>
                   MedEnRoll
                 </Link>
             </div>
-            <box-icon name='menu' className="pull-right"></box-icon>
+            {/* <box-icon name='menu' className="pull-right"></box-icon> */}
           </div>          
             { isLoggedIn?
               <ul className='nav_list'>
