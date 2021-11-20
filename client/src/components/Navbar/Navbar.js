@@ -43,15 +43,15 @@ function Navbar() {
             {/* <box-icon name='menu' className="pull-right"></box-icon> */}
           </div>          
             { isLoggedIn?
-              <ul className='nav_list'>
+              <ul>
                 { renderNavItem("Dashboard", "grid-alt", "/dashboard") }
                 { renderNavItem("Profile", "user-circle", "/profile") }
-                { renderNavItem("Appointments", "notepad", "/appointments") }
+                { renderNavItem("Appointments", "calendar-event", "/appointments") }
                 { renderNavItem("Insurance", "wallet-alt", "/insurance") } 
                 { renderNavItem("Log out", "log-out", "/",() => Auth.logout() ) }  
               </ul>
               :
-              <ul className='nav_list'> 
+              <ul> 
                 { renderNavItem("Home", "home", "/") }
                 { renderNavItem("Sign Up", "wallet-alt", "/signup") }
                 { renderNavItem("Log-In", "log-in", "/login") } 

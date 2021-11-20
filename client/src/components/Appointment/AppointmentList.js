@@ -1,37 +1,20 @@
 import React from 'react';
 import '../../styles/Form.css';
-import spinner from '../../assets/spinner.gif';
-import { GET_PATIENT } from '../../utils/queries';
-import { useQuery} from '@apollo/client';
 import { DataGrid } from '@mui/x-data-grid';
 import Moment from 'moment';
 
-const AppointmenList = () => {   
-
-/////////////////////////////////////////////////////////////////////////////
-
-  // React Hooks
-  const { data:patientData, loading, error } = useQuery(GET_PATIENT, {
-    // pass URL parameter
-    variables: { userId: -1 }
-  });
-
-  if(error) console.log(error);
- 
-   if(loading)
-     return <img src={spinner} alt="loading" />;  
-
-    const columns = [
+const AppointmentList = ({patientData}) => {    
+  /////////////////////////////////////////////////////////////////////////////
+ if(!patientData) return <div>Loading...</div>;
+  const columns = [
       { field: 'apptDate', headerName: 'Date & Time', width: 250 }, 
       { field: 'duration', headerName: 'Duration', width: 150 }, 
       { field: 'provider', headerName: 'Provider', width: 200 }, 
       { field: 'description', headerName: 'Descrption', width: 250 }
     ];
 
-    Moment.locale('en');
-
-    const apptList = patientData?.patient?.appointments;    
-    console.log(apptList);
+    Moment.locale('en'); 
+    const apptList = patientData?.patient?.appointments ||[];
     let rows = apptList.map(appt => { 
       var aptRow = { 
           ...appt, 
@@ -58,4 +41,4 @@ const AppointmenList = () => {
   ); 
 };
 
-export default AppointmenList;
+export default AppointmentList;

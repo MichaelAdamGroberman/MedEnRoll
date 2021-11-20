@@ -15,3 +15,24 @@ code {
   width: calc(100% - 240px);
   left: 240px;
 }
+
+.page-header{
+  font-size: 18pt;
+  font-weight: bold;
+  color:rgb(216, 253, 253);
+  border:1px solid rgb(216, 253, 253);
+  background-color: rgb(88, 138, 139);
+  border-radius: 8px;
+  margin:0;
+  margin-bottom: 10px;
+  padding: 10px;
+  text-align: center;
+}
+.page-header-icon{
+  height:40px;
+  color:rgb(216, 253, 253);
+}
+
+.home-img{
+  width:500px;
+}

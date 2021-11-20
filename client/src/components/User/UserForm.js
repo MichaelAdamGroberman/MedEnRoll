@@ -135,7 +135,11 @@ const UserForm = () => {
     return <img src={spinner} alt="loading" />;  
 
   return (
-    <div className={classes.root}>      
+    <>      
+      <header class="page-header">
+        <box-icon name='calendar' className="page-header-icon"  color='rgb(216, 253, 253)' ></box-icon>
+        <span> Patient Profile ({(patientData ||{}).firstName })</span>
+      </header>
       <div className="form-container">
         <Stepper  activeStep={activeStep} alternativeLabel>
           {steps.map((label) => (
@@ -163,7 +167,7 @@ const UserForm = () => {
             </form>
         )}     
         </div> 
-    </div>
+    </>
   );
 };
 

@@ -7,17 +7,25 @@ import DateTimePicker  from '@mui/lab/DateTimePicker';
 import { ADD_APPOINTMENT } from '../../utils/mutations';
 import { useMutation} from '@apollo/client';
 
-const AppointmentForm = () => {   
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
+
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
+const AppointmentForm = ({handleAfterSave}) => {   
 
 /////////////////////////////////////////////////////////////////////////////
-
-  // React Hooks
-  // const { data:appointmentData, loading, error } = useQuery(GET_PATIENT, {
-  //   // pass URL parameter
-  //   variables: { userId: -1 }
-  // });
-
-  //if(error) console.log(error);
 
   var appointmentData = {};
 
@@ -59,14 +67,19 @@ const AppointmentForm = () => {
         }
       }
     });
+    if(handleAfterSave)
+      handleAfterSave();
   };
+
+
 const parentField = null;
   // if(loading)
   //   return <img src={spinner} alt="loading" />;  
 
   return (  
-      <div className="form-container">         
-        <form> 
+      <div className="form-container">
+        <Stack direction="row" spacing={1}>
+          <Item> 
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DateTimePicker
                 label="Appointment Date"
@@ -77,40 +90,53 @@ const parentField = null;
                   margin="normal" {...params} />}
               />
             </LocalizationProvider>   
-
-          <TextField 
-            label='Duration'
-            variant='outlined'
-            size="small"
-            margin="normal" 
-            inputProps={ {value:formState?.duration} }
-            onChange={ (event) => { handleFieldChange("duration", event.target.value, parentField); }}
-          />
-          <TextField 
-            label='Medical Provider'
-            variant='outlined'
-            size="small"
-            margin="normal" 
-            inputProps={ {value:formState?.provider} } 
-            onChange={ (event) => { handleFieldChange("provider", event.target.value, parentField); }}
-          />
+          </Item>
+          <Item>
+            <FormControl sx={{width: 180 }} margin="normal" >
+              <InputLabel id="duration-label">Duration</InputLabel>
+              <Select 
+                labelId="duration-label"
+                value={formState?.duration||''}
+                label="Duration"
+                size="small"
+                onChange={(event) => { handleFieldChange("duration", event.target.value, parentField); }}
+              >
+                <MenuItem value={0}>Not Selected</MenuItem>
+                <MenuItem value={30}>30 mins</MenuItem>
+                <MenuItem value={45}>45 mins</MenuItem>
+                <MenuItem value={60}>1 hr</MenuItem>
+                <MenuItem value={120}>2 hrs</MenuItem>
+                <MenuItem value={180}>3 hrs</MenuItem>
+              </Select>
+            </FormControl>
+          </Item>
+          <Item>
+            <TextField 
+              label='Medical Provider'
+              variant='outlined'
+              size="small"
+              margin="normal" 
+              inputProps={ {value:formState?.provider} } 
+              onChange={ (event) => { handleFieldChange("provider", event.target.value, parentField); }}
+            />
+          </Item>
+          </Stack>
           <TextField  
-            label='Description'
-            variant='outlined'
-            size="small"
-            margin="normal" 
-            inputProps={ {value:formState?.description} } 
-            onChange={ (event) => { handleFieldChange("description", event.target.value, parentField); }}
-          />
-          
-
-          <div className="form-footer"> 
-
+              label='Description'
+              variant='outlined'
+              size="small"
+              margin="normal" 
+              multiline
+              rows={3}
+              fullWidth 
+              inputProps={ {value:formState?.description} } 
+              onChange={ (event) => { handleFieldChange("description", event.target.value, parentField); }}
+            />            
+            <div className="form-footer text-center">
               <button type="button" className="btn btn-primary" onClick={handleFormSubmit}>
-                Add Appointment
+                  Add Appointment
               </button>
-          </div>            
-        </form> 
+            </div>
       </div> 
   ); 
 };
