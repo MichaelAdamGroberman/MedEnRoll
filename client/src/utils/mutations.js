@@ -39,6 +39,8 @@ export const UPDATE_PATIENT = gql`
     $lastName: String!
     $dob: String!
     $gender: String!
+    $address: AddressInput
+    $contact: ContactInput
   ) {
     addOrUpdatePatient(
       firstName: $firstName
@@ -46,8 +48,28 @@ export const UPDATE_PATIENT = gql`
       lastName: $lastName
       dob: $dob
       gender: $gender
+      address: $address
+      contact: $contact
     ) {
       firstName
+    }
+  }
+`;
+
+
+export const ADD_APPOINTMENT = gql`
+  mutation addAppointment(
+    $appointment: AppointmentInput
+  ) {
+    addAppointment(
+      appointment: $appointment
+    ) {
+        appointments {
+          appointmentDateTime
+          duration
+          provider
+          description
+        }
     }
   }
 `;

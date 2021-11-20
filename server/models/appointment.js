@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const appointmentSchema = new Schema({
   appointmentDateTime: {
-    type: Date,
+    type: String,
     required: true,
   },
   duration: {
@@ -16,7 +16,7 @@ const appointmentSchema = new Schema({
   },
   description: {
     type: String,
-    required: true,
+    required: false,
     trim: true
   }
 });

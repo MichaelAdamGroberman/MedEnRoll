@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState, useEffect } from 'react';
 import { Stepper, Step, StepLabel } from '@material-ui/core';
 import FormUserDetails from './FormUserDetails';
 import FormAddressDetails from './FormAddressDetails';
@@ -9,37 +8,34 @@ import { useQuery, useMutation} from '@apollo/client';
 import { GET_PATIENT } from '../../utils/queries';
 import { UPDATE_PATIENT } from '../../utils/mutations';
 
-
-const useStyles = makeStyles({
-  root: {
-    margin: '5px auto',
-    width: '100%',
-    borderRadius:'5px',
-    '& .MuiStepIcon-root.MuiStepIcon-active': { color: 'lightblue' },
-    '& .MuiStepIcon-root.MuiStepIcon-completed': { color: 'lightblue' },
-  },
-});
 const UserForm = () => {
 
-  // React Hooks
+  // React Hooks     
   const [activeStep, setActiveStep] = useState(0);
-  const { data:patientData, loading, error } = useQuery(GET_PATIENT, {
+  const [patientData, setPatientData] = useState({});   
+  const { loading, error, data, refetch  } = useQuery(GET_PATIENT, {
     // pass URL parameter
     variables: { userId: -1 }
   });
-
-  if(error) console.log(error);
-
-  const [formState, setFormState] = useState(patientData?.patient || {});
-  const [updatePatient] = useMutation(UPDATE_PATIENT);
-  const classes = useStyles();
-
-
-  const getSteps = () => { return ['BASIC INFORMATION', 'ADDRESS', 'INSURANCE'];  };
-  const handleNext = () => { setActiveStep((prevActiveStep) => prevActiveStep + 1);  };  
-  const handlePrevious = () => { setActiveStep((prevActiveStep) => prevActiveStep - 1); };
+  const [formState, setFormState] = useState(patientData || {});
+  const [updatePatient] = useMutation(UPDATE_PATIENT); 
   
-  const steps = getSteps();
+  useEffect (() => {
+    setPatientData( data?.patient);
+  }, [data]);
+
+  if(loading) return <img src={spinner} alt="loading" />
+  if (error) return (
+    <React.Fragment>
+      <p>Oops, error! </p> 
+      <button onClick={() => refetch()}>Please try again!</button>
+    </React.Fragment>
+  );
+
+
+  const handleNext = () => { setActiveStep((prevActiveStep) => prevActiveStep + 1);  };  
+  const handlePrevious = () => { setActiveStep((prevActiveStep) => prevActiveStep - 1); };  
+  const steps = ['BASIC INFORMATION', 'ADDRESS', 'INSURANCE']; 
 
   const handleFieldChange = (name, value, parentField) => { 
 
@@ -69,6 +65,22 @@ const UserForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
+
+    let newState = {};
+    newState = { ...formState, newState }
+    newState = {
+      ...newState, 
+        address : {
+          ...newState['address']
+        } , 
+        contact: {
+          ...newState['contact']
+        } 
+    };
+
+    setFormState(newState);
+    const addr = formState.address;
+    const contact = formState.contact;
      await updatePatient({
       variables: {
         gender: formState.gender,
@@ -76,14 +88,24 @@ const UserForm = () => {
         firstName: formState.firstName,
         middleName: formState.middleName,
         lastName: formState.lastName,
-        address:formState.address,
-        contact: formState.contact,
+        address: {
+          street: addr.street,
+          city: addr.city,
+          state: addr.state,
+          zip: addr.zip
+        },
+        contact: {
+          primaryEmail: contact.primaryEmail,
+          alternateEmail: contact.alternateEmail,
+          cellPhone: contact.cellPhone,
+          homePhone: contact.homePhone,
+          workPhone: contact.workPhone
+        },
         appointments:formState.appointments
       }
     });
   };
 
-  
   const getStepsContent= (stepIndex, data) =>{
     switch (stepIndex) {
       case 0:
@@ -97,17 +119,21 @@ const UserForm = () => {
                   handleFieldChange={handleFieldChange}                   
                   parentField="address" />
       case 2:
-        return <FormInsuranceDetails />;
+        return <FormInsuranceDetails 
+                formData={data} 
+                handleFieldChange={handleFieldChange}                   
+                parentField="contact"/>;
       default:
         return 'Unknown Step';
     }
   }
 
-  if(loading)
-    return <img src={spinner} alt="loading" />;  
-
   return (
-    <div className={classes.root}>      
+    <>      
+      <header className="page-header">
+        <box-icon name='calendar' className="page-header-icon"  color='rgb(216, 253, 253)' ></box-icon>
+        <span> Patient Profile ({(patientData ||{}).firstName })</span>
+      </header>
       <div className="form-container">
         <Stepper  activeStep={activeStep} alternativeLabel>
           {steps.map((label) => (
@@ -135,7 +161,7 @@ const UserForm = () => {
             </form>
         )}     
         </div> 
-    </div>
+    </>
   );
 };
 

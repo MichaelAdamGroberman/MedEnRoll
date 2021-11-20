@@ -8,56 +8,77 @@
   padding: 6px, 14px;
   color: rgb(80, 74, 74);
 }
-.nav-link{
+
+.nav-link {
   text-decoration: none;
   color: Black;
 }
-.nav-link:hover{
+
+.nav-link:hover {
   text-decoration: none;
   color: Black;
 }
-.icon{
-  font-size: 16px;
+
+.icon {
+  font-size: 16pt;
 }
+
 .sidebar .logo_content .logo {
-  color: rgb(129, 155, 13);
-  display: flex;
-  height: 50px;
+  color: #fff !important;
+  background-color: rgb(88, 138, 139);
+  display: flex;  
+  font-size: 18pt;
   width: 100%;
 }
+
 .logo_content .logo box-icon {
   font-size: 28px;
   margin-right: 5px;
 }
+
 .logo_content .logo .logo_name {
-  font-size: 18pt;
   font-weight: bold;
   padding: 5px;
 }
+
 .sidebar ul {
   margin-top: 20px;
   padding-right: 10px;
 }
+
 .sidebar ul li {
   position: relative;
-  height: 50px;
+  padding: 5px;
   width: 100%;
-  margin: 0 5px;
+  margin: 5px 0;
   list-style: none;
   text-decoration: none;
   line-height: 50px;
-  color: brown;
-  display: flex; 
+  color: rgb(236, 253, 176) !important;
+  display: flex;
   padding: 5px;
   border-radius: 5px;
+  background-color: rgb(109, 148, 233)
 }
-.sidebar ul li:hover
-{
+
+.sidebar ul li:hover {
   background-color: antiquewhite;
   text-decoration: none;
+  color:#333 !important;
 }
 
 .sidebar ul li box-icon {
   height: 25px;
   /* min-width: 40px; */
+}
+
+.sidebar .nav-link {
+  padding: 3px 12px !important;
+  color:#fff!important;
+  font-size:14pt;
+}
+
+.sidebar .nav-link:hover,
+.sidebar ul li:hover .nav-link{  
+  color:#333 !important;
 }

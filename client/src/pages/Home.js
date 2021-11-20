@@ -9,6 +9,8 @@ function Home() {
         Making appointments just got easier. Get rid of long queues and doctor's forms 
         before you enter a doctor's. Sign up today!
       </h5>
+      
+      <img className='home-img'  src='images/home-page.jpg' alt='doctor' />
     </div>
     </div>
   );

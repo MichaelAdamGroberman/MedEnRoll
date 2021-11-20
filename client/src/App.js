@@ -11,6 +11,8 @@ import NotFound from './pages/NotFound';
 import Profile from './pages/Profile';
 import './styles/App.css';
 import { StoreProvider } from './utils/GlobalState';
+import Appointments from './pages/Appointments';
+import Dashboard from './pages/Dashboard';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -43,7 +45,9 @@ function App() {
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/profile/:id" component={UserForm} />
-              <Route exact path="/insurance" component={UserForm} />
+              <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/appointments" component={Appointments} />
+              <Route exact path="/insurance" component={NotFound} />
               <Route exact path="/login" component={Login} />
               <Route component={NotFound} />
             </Switch>

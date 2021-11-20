@@ -65,13 +65,13 @@ const FormUserDetails = ({formData, parentField, handleFieldChange}) => {
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
               label="Date of Birth"
-              value={formData?.dob}
+              value={new Date(formData?.dob)}
               onChange={(newDate) => { handleFieldChange("dob", new Date(newDate), parentField); }}
               renderInput={(params) => (
                 <TextField 
                 size="small"
                 margin="normal" 
-                {...params} helperText={params?.inputProps?.placeholder} />
+                {...params} />
               )}
             />
           </LocalizationProvider>      
